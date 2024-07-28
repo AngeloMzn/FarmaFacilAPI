@@ -17,4 +17,7 @@ export class App{
   private router(){
     this.server.use(router);
   }
+  
 }
+require('dotenv').config();
+require('dotenv').config({ path: '././.env' });
