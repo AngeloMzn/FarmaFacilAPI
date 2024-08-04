@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { adminAuthController } from "../app/controller/User/UserAuthController";
+import { userAuthController } from "../app/controller/User/UserAuthController";
 
 const router: Router = Router()
 
 //Routes
-router.get("/signup", adminAuthController.signup);
-router.get("/login", adminAuthController.login);
+router.get("/signup", userAuthController.signup);
+router.post("/login", userAuthController.login);
 
 export { router };
