@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { signUpUserAction } from "../../usecases/User/SignupUserAction";
 import { loginUserAction } from "../../usecases/User/LoginUserAction";
 
-class UserAuthController {
+class UserController {
 
   public async signup(req: Request, res: Response): Promise<Response> {
     try {
@@ -25,4 +25,4 @@ class UserAuthController {
 
 }
 
-export const userAuthController = new UserAuthController();
+export const userController = new UserController();
