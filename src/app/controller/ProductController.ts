@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
-import { signUpUserAction } from "../../usecases/User/SignupUserAction";
-import { loginUserAction } from "../../usecases/User/LoginUserAction";
 
 class ProductController{
 
   public async createProduct(req: Request, res: Response): Promise<Response> {
     try {
-      const result = await produ.signUp(req.body);
+      const result = await createProductAction.createProduct(req.body);
 
       return res.json(result);
     } catch (error) {

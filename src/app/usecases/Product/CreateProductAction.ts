@@ -1,13 +1,14 @@
 import { userDao } from "../../dao/UserDao";
 
 interface Data {
-    email: string;
-    password: string;   
+    code: string;
+    quantity: int;   
+    description: description;
 }
 
-class LoginUserAction{
+class CreateProductAction{
 
-    public async login(data: Data) {
+    public async createProduct(data: Data) {
         const user = await userDao.getUserByEmail(data.email);
         if(!user){
             return {message: 'Credenciais inválidas, email e/ou senha incorretos.'};
@@ -18,4 +19,4 @@ class LoginUserAction{
     }
 }
 
-export const loginUserAction = new LoginUserAction();
+export const createProductAction = new CreateProductAction();
