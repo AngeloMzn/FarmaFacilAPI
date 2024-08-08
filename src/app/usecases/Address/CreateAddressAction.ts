@@ -6,6 +6,7 @@ interface Address {
     city: string;
     street: string;
     number: string;
+    bairro: string;
     type: string;
     complement: string;
     userId: Promise<number>;

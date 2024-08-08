@@ -31,6 +31,7 @@ model Address {
   city      String
   street    String
   number    String
+  bairro    String
   type      String
   complement String
   createdAt DateTime @default(now())

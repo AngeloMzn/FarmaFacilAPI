@@ -17,6 +17,7 @@ interface Data {
         city: string;
         street: string;
         number: string;
+        bairro: string;
         type: string;
         complement: string;
     }
@@ -43,6 +44,7 @@ class SignUpUserAction {
             city: data.address.city,
             street: data.address.street,
             number: data.address.number,
+            bairro: data.address.bairro,
             type: data.address.type,
             complement: data.address.complement,
             userId: Promise.resolve(userId.id)

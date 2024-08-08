@@ -8,18 +8,18 @@ class UserAuthController {
     try {
       const result = await signUpUserAction.signUp(req.body);
 
-      return res.json(result);
+      return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+      return res.status(500).json({ message: (error as Error).message, error: error as any });
     }
   }
 
   public async login(req: Request, res: Response): Promise<Response> {
     try {
       const result = await loginUserAction.login(req.body);
-      return res.json(result);
+      return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+      return res.status(500).json({ message: (error as Error).message, error: error as any });
     }
   }
 

@@ -6,6 +6,7 @@ interface Address {
     city: string;
     street: string;
     number: string;
+    bairro: string;
     type: string;
     complement: string;
     userId: Promise<number>;
@@ -33,6 +34,7 @@ class AddressDao {
                 city: address.city,
                 street: address.street,
                 number: address.number,
+                bairro: address.bairro,
                 type: address.type,
                 complement: address.complement,
                 userId: userId
@@ -52,6 +54,7 @@ class AddressDao {
                 city: address.city,
                 street: address.street,
                 number: address.number,
+                bairro: address.bairro,
                 type: address.type,
                 complement: address.complement,
                 userId: userId
