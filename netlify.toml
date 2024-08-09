@@ -1,3 +1,4 @@
 [[redirects]]
 from = "/*"
 to = "/core/index.ts"
+status = 200
