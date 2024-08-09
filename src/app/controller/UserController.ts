@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
-import { signUpUserAction } from "../../usecases/User/SignupUserAction";
-import { loginUserAction } from "../../usecases/User/LoginUserAction";
+import { signUpUserAction } from "../usecases/User/SignupUserAction";
+import { loginUserAction } from "../usecases/User/LoginUserAction";
 
-class AdminAuthController {
+
+class UserController {
 
   public async signup(req: Request, res: Response): Promise<Response> {
     try {
-      const result = await signUpUserAction.signUp(req.body);
+      const response = await signUpUserAction.signUp(req.body);
 
-      return res.json(result);
+      return res.json(response);
     } catch (error) {
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });
     }
@@ -16,8 +17,8 @@ class AdminAuthController {
 
   public async login(req: Request, res: Response): Promise<Response> {
     try {
-      const result = await loginUserAction.login(req.body);
-      return res.json(result);
+      const response = await loginUserAction.login(req.body);
+      return res.json(response);
     } catch (error) {
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });
     }
@@ -25,4 +26,4 @@ class AdminAuthController {
 
 }
 
-export const adminAuthController = new AdminAuthController();
+export const userController = new UserController();
