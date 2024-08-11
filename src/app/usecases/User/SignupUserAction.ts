@@ -9,7 +9,6 @@ interface Data {
     rg: string;
     role: string;
     phone: string;
-    image: string;
     birthdate: Date;
     password: string;
     address: {
@@ -34,7 +33,6 @@ class SignUpUserAction {
             rg: data.rg,
             role: data.role,
             phone: data.phone,
-            image: data.image,
             birthdate: data.birthdate,
             password: hashedPassword
         };
