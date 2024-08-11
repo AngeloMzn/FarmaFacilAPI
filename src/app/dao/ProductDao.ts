@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 interface Product {
+    name: string;
     code: string;
     quantity: number;   
     description: string;
@@ -46,6 +47,7 @@ class ProductDao{
                 code: product.code,
                 quantity: product.quantity,
                 description: product.description,
+                name: product.name,
                 category: product.category,
                 initial_price: product.initial_price,
                 promotional_price: product.promotional_price,

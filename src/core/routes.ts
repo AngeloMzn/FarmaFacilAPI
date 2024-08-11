@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { userController } from "../app/controller/UserController";
 import { productController } from "../app/controller/ProductController";
+import { addressController } from "../app/controller/Addresscontroller";
 
 
 const router: Router = Router()
@@ -16,6 +17,7 @@ router.get("/product/:id",  productController.getProductById);
 router.put("/product/:id",  productController.updateProduct);
 router.delete("/product/:id",  productController.deleteProduct);
 
-//Sell
+//Address
+router.get("/addresses", addressController.getAdressesByUserId);
 
 export { router };

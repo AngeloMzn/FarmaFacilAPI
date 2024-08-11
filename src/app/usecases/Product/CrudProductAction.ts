@@ -3,6 +3,7 @@ import { userDao } from "../../dao/UserDao";
 import { productDao } from "../../dao/ProductDao";
 
 interface Data {
+    name: string;
     code: string;
     quantity: number;   
     description: string;
