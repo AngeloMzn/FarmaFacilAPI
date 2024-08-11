@@ -1,9 +1,16 @@
 import db from "../../core/db";
+import fs from 'fs';
+import path from 'path';
 
 interface Product {
     code: string;
     quantity: number;   
     description: string;
+    category: string;
+    initial_price: number;
+    promotional_price: number;
+    needs_prescription: boolean;
+    image: string;
 }
 class ProductDao{
 
@@ -28,11 +35,19 @@ class ProductDao{
     }
 
     async createProduct(product: Product){
+        const imageDirectory = path.join(__dirname, '..', 'public', 'images', 'product');
+        const imagePath = path.join(imageDirectory, product.image);
+        fs.writeFileSync(imagePath, product.image);
         return db.product.create({
             data:{
                 code: product.code,
                 quantity: product.quantity,
-                description: product.description
+                description: product.description,
+                category: product.category,
+                initial_price: product.initial_price,
+                promotional_price: product.promotional_price,
+                needs_prescription: product.needs_prescription,
+                image: product.image
             }
         });
     }

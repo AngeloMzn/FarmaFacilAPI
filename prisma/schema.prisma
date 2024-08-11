@@ -7,7 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//users
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
@@ -18,12 +17,14 @@ model User {
   phone     String?
   birthDate DateTime
   password  String 
+  image     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   Address Address[]
+  Sale Sale[]
+  ShoppingCart ShoppingCart[]
 }
 
-// other models
 model Address {
   id        Int      @id @default(autoincrement())
   uf        String
@@ -44,4 +45,62 @@ model Product{
   code    String @unique
   quantity Int
   description String 
+  category String
+  initial_price Float
+  promotional_price Float
+  needs_prescription Boolean
+  image String
+  createdAt DateTime @default(now())
+  Stock Stock[]
+
+  SaleItem SaleItem[]
+}
+model Receipt{
+  id        Int @id @default(autoincrement())
+  patient_name String
+  meds String
+  doctor_name String
+  image String
+}
+
+model Stock{
+  id        Int @id @default(autoincrement())
+  quantity Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  productId Int
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model SaleItem{
+  id        Int @id @default(autoincrement())
+  quantity Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  productId Int
+  product Product @relation(fields: [productId], references: [id])
+  shoppingCartId Int
+  shoppingCart ShoppingCart @relation(fields: [shoppingCartId], references: [id])
+}
+
+model ShoppingCart {
+  id        Int @id @default(autoincrement())
+  total Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  sale Sale?
+  SaleItem SaleItem[]
+}
+
+model Sale {
+  id        Int @id @default(autoincrement())
+  total Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  shoppingCartId Int @unique
+  shoppingCart ShoppingCart @relation(fields: [shoppingCartId], references: [id])
 }

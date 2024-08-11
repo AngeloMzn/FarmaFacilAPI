@@ -1,4 +1,6 @@
 import db from "../../core/db";
+import fs from 'fs';
+import path from 'path';
 
 interface User {
     email: string;
@@ -9,6 +11,7 @@ interface User {
     phone: string;
     birthdate: Date;  
     password: string;
+    image: string;
 }
 class UserDao{
 
@@ -32,9 +35,12 @@ class UserDao{
         });
     }
 
-    async createUser(user: User){
+    async createUser(user: User) {
+        const imageDirectory = path.join(__dirname, '..', 'public', 'images', 'product');
+        const imagePath = path.join(imageDirectory, user.image);
+        fs.writeFileSync(imagePath, user.image);
         return db.user.create({
-            data:{
+            data: {
                 email: user.email,
                 name: user.name,
                 cpf: user.cpf,
@@ -42,7 +48,8 @@ class UserDao{
                 role: user.role,
                 phone: user.phone,
                 birthDate: user.birthdate,
-                password: user.password
+                password: user.password,
+                image: user.image
             }
         });
     }
