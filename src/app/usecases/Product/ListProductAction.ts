@@ -6,8 +6,12 @@ interface Data {
     code: string;
     quantity: number;   
     description: string;
+    category: string;
+    initial_price: number;
+    promotional_price: number;
+    needs_prescription: boolean;
+    image: string;
 }
-
 class ListProductAction{
 
     public async getProducts() {
