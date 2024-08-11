@@ -34,7 +34,8 @@ class SignUpUserAction {
             role: data.role,
             phone: data.phone,
             birthdate: data.birthdate,
-            password: hashedPassword
+            password: hashedPassword,
+            image: ""
         };
         const userId = await userDao.createUser(user);
         const address = {

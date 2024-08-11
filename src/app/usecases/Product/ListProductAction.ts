@@ -17,7 +17,7 @@ class ListProductAction{
     public async getProducts() {
         const response = await productDao.getProducts();
         if(response){
-            return {message: 'Produto cadastrado com sucesso!'};
+            return response;
         }
         return {message: 'Erro: Não foi possível cadastrar o produto!'};
     }

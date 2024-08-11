@@ -35,9 +35,12 @@ class ProductDao{
     }
 
     async createProduct(product: Product){
-        const imageDirectory = path.join(__dirname, '..', 'public', 'images', 'product');
-        const imagePath = path.join(imageDirectory, product.image);
-        fs.writeFileSync(imagePath, product.image);
+        if(product.image != "") {
+            const imageDirectory = path.join(__dirname, '..', 'public', 'images', 'product');
+            const imagePath = path.join(imageDirectory, product.image);
+            fs.writeFileSync(imagePath, product.image);
+        }
+
         return db.product.create({
             data:{
                 code: product.code,
