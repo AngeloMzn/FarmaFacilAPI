@@ -3,19 +3,20 @@ import bcrypt from "bcrypt";
 
 interface Data {
     email: string;
-    password: string;   
+    password: string;
+    role: string;   
 }
 
 class LoginUserAction{
 
     public async login(data: Data) {
         const user = await userDao.getUserByEmail(data.email);
-        if(!user){
-            return {message: 'Credenciais inválidas, email e/ou senha incorretos.'};
-        }else if(bcrypt.compareSync(data.password, user.password)){
+       if(user && bcrypt.compareSync(data.password, user.password)){
             return {message: 'Usuário logado com sucesso!', user: user};
+        }else if(user && data.role != user.role){
+            return {message: 'Credenciais inválidas.'};
         }
-        return {message: 'Credenciais inválidas, email e/ou senha incorretos.'};
+        return {message: 'Credenciais inválidas.'};
     }
 }
 
