@@ -11,10 +11,8 @@ class LoginUserAction{
 
     public async login(data: Data) {
         const user = await userDao.getUserByEmail(data.email);
-       if(user && bcrypt.compareSync(data.password, user.password)){
+       if(user && bcrypt.compareSync(data.password, user.password) && data.role == user.role){
             return {message: 'Usuário logado com sucesso!', user: user};
-        }else if(user && data.role != user.role){
-            return {message: 'Credenciais inválidas.'};
         }
         return {message: 'Credenciais inválidas.'};
     }
