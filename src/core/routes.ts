@@ -16,6 +16,8 @@ router.get("/products",  productController.getProducts);
 router.get("/product/:id",  productController.getProductById);
 router.put("/product/:id",  productController.updateProduct);
 router.delete("/product/:id",  productController.deleteProduct);
+router.get("/product/code/:code",  productController.getProductByCode);
+router.get("/products/category/:category",  productController.getProductsByCategory);
 
 //Address
 router.get("/addresses", addressController.getAdressesByUserId);

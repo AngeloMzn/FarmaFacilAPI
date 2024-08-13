@@ -21,6 +21,7 @@ class ListProductAction{
         }
         return {message: 'Erro: Não foi possível cadastrar o produto!'};
     }
+    
     public async getProductById(id:number) {
         const response = await productDao.getProductById(id);
         if(response){
@@ -28,6 +29,23 @@ class ListProductAction{
         }
         return {message: 'Erro: Não foi possível cadastrar o produto!'};
     }
+
+    public async getProductByCode(code:string) {
+        const response = await productDao.getProductByCode(code);
+        if(response){
+            return response;
+        }
+        return {message: 'Erro: Não foi possível cadastrar o produto!'};
+    }
+    
+    public async getProductsByCategory(category:string) {
+        const response = await productDao.getProductsByCategory(category);
+        if(response){
+            return response;
+        }
+        return {message: 'Erro: Não foi possível cadastrar o produto!'};
+    }
+
 }
 
 export const listProductAction = new ListProductAction();

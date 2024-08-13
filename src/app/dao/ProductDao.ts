@@ -74,5 +74,13 @@ class ProductDao{
         });
     }
 
+    async getProductsByCategory(category: string){
+        return db.product.findMany({
+            where:{
+                category: category
+            }
+        });
+    }
+
 } 
 export const productDao = new ProductDao();
