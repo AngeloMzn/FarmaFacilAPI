@@ -199,5 +199,9 @@ class ProductDao{
           });
     }
 
+    async deleteAllProducts(){
+        return db.product.deleteMany();
+    }
+
 } 
 export const productDao = new ProductDao();

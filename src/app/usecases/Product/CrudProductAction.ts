@@ -44,6 +44,13 @@ class CrudProductAction{
         }
         return {message: 'Erro: Não foi possível gerar a seed de produtos!'};
     }
+    public async deleteAllProducts() {
+        const response = await productDao.deleteAllProducts();
+        if(response){
+            return {message: 'Todos os produtos foram deletados com sucesso!'};
+        }
+        return {message: 'Erro: Não foi possível deletar os produtos!'};
+    }
 
 }
 

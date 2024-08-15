@@ -74,6 +74,14 @@ class ProductController{
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });
     }
   }
+  public async deleteAllProducts(req: Request, res: Response): Promise<Response> {
+    try {
+      const response = await crudProductAction.deleteAllProducts();
+      return res.json(response);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+    }
+  }
 
 }
 

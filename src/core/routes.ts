@@ -19,6 +19,7 @@ router.delete("/product/:id",  productController.deleteProduct);
 router.get("/product/code/:code",  productController.getProductByCode);
 router.get("/products/category/:category",  productController.getProductsByCategory);
 router.get("/products/seed",  productController.generateSeed);
+router.delete("/products",  productController.deleteAllProducts);
 
 //Address
 router.get("/addresses", addressController.getAdressesByUserId);
