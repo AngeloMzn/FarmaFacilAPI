@@ -94,7 +94,7 @@ class ProductDao{
                 initial_price: 100.0,
                 promotional_price: 90.0,
                 needs_prescription: false,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 2',
@@ -105,7 +105,7 @@ class ProductDao{
                 initial_price: 150.0,
                 promotional_price: 140.0,
                 needs_prescription: true,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 3',
@@ -116,7 +116,7 @@ class ProductDao{
                 initial_price: 200.0,
                 promotional_price: 180.0,
                 needs_prescription: false,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 4',
@@ -127,7 +127,7 @@ class ProductDao{
                 initial_price: 250.0,
                 promotional_price: 230.0,
                 needs_prescription: true,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 5',
@@ -138,7 +138,7 @@ class ProductDao{
                 initial_price: 300.0,
                 promotional_price: 270.0,
                 needs_prescription: false,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 6',
@@ -149,7 +149,7 @@ class ProductDao{
                 initial_price: 350.0,
                 promotional_price: 320.0,
                 needs_prescription: true,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 7',
@@ -160,7 +160,7 @@ class ProductDao{
                 initial_price: 400.0,
                 promotional_price: 370.0,
                 needs_prescription: false,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 8',
@@ -171,7 +171,7 @@ class ProductDao{
                 initial_price: 450.0,
                 promotional_price: 420.0,
                 needs_prescription: true,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 9',
@@ -182,7 +182,7 @@ class ProductDao{
                 initial_price: 500.0,
                 promotional_price: 470.0,
                 needs_prescription: false,
-                image: 'product.webp',
+                image: '',
               },
               {
                 name: 'Produto 10',
@@ -193,7 +193,7 @@ class ProductDao{
                 initial_price: 550.0,
                 promotional_price: 520.0,
                 needs_prescription: true,
-                image: 'product.webp',
+                image: '',
               },
             ],
           });
@@ -201,6 +201,15 @@ class ProductDao{
 
     async deleteAllProducts(){
         return db.product.deleteMany();
+    }
+
+    async getLastTwo(){
+        return db.product.findMany({
+            take: 2,
+            orderBy: {
+                id: 'desc'
+            }
+        });
     }
 
 } 

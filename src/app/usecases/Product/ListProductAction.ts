@@ -45,6 +45,13 @@ class ListProductAction{
         }
         return {message: 'Erro: Não foi possível cadastrar o produto!'};
     }
+    public async getLastTwo(){
+        const response = await productDao.getLastTwo();
+        if(response){
+            return response;
+        }
+        return {message: 'Erro: Não foi possível cadastrar o produto!'};
+    }
 
 }
 

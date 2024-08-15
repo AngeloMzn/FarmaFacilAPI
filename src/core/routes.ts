@@ -18,6 +18,8 @@ router.put("/product/:id",  productController.updateProduct);
 router.delete("/product/:id",  productController.deleteProduct);
 router.get("/product/code/:code",  productController.getProductByCode);
 router.get("/products/category/:category",  productController.getProductsByCategory);
+router.get("/products/lasttwo",  productController.getLastTwo);
+//devmode
 router.get("/products/seed",  productController.generateSeed);
 router.delete("/products",  productController.deleteAllProducts);
 
