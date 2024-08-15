@@ -18,6 +18,7 @@ router.put("/product/:id",  productController.updateProduct);
 router.delete("/product/:id",  productController.deleteProduct);
 router.get("/product/code/:code",  productController.getProductByCode);
 router.get("/products/category/:category",  productController.getProductsByCategory);
+router.get("/products/seed",  productController.generateSeed);
 
 //Address
 router.get("/addresses", addressController.getAdressesByUserId);

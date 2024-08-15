@@ -66,6 +66,14 @@ class ProductController{
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });
     }
   }
+  public async generateSeed(req: Request, res: Response): Promise<Response> {
+    try {
+      const response = await crudProductAction.generateSeed();
+      return res.json(response);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+    }
+  }
 
 }
 
