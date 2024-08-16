@@ -24,6 +24,10 @@ router.get("/products/seed",  productController.generateSeed);
 router.delete("/products",  productController.deleteAllProducts);
 
 //Address
+router.post("/address/create", addressController.createAddress);
 router.get("/addresses", addressController.getAdressesByUserId);
+router.put("/address/:id", addressController.updateAddress);
+router.delete("/address/:id", addressController.deleteAddress);
+
 
 export { router };
