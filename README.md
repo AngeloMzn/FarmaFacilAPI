@@ -1,3 +1,4 @@
 # FarmaFacil
-Proposta de alteração de Readme
-teste 1
+para rodar a aplicação backend basta rodar os comandos  
+npm i  
+npm run dev
