@@ -36,7 +36,11 @@ model Address {
   complement String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  
   user     User   @relation(fields: [userId], references: [id])
+  farmacia Farmacia   @relation(fields: [farmaciaId], references: [id])
+
+  farmaciaId   Int
   userId   Int
 }
 
@@ -56,6 +60,20 @@ model Product{
 
   SaleItem SaleItem[]
 }
+
+model Farmacia {
+  id        Int       @id @default(autoincrement())
+  nome      String
+  cnpj      String    @unique
+  telefone  String
+  produtos  Produto[] 
+  Address Address[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  
+}
+
 model Receipt{
   id        Int @id @default(autoincrement())
   patient_name String
