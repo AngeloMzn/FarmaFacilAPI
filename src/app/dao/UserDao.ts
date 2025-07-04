@@ -35,6 +35,14 @@ class UserDao {
         });
     }
 
+    async getUserByCpf(cpf: string) {
+        return db.user.findUnique({
+            where: {
+                cpf: cpf
+            }
+        });
+    }
+
     async createUser(user: User) {
         if (user.image != "") {
             const imageDirectory = path.join(__dirname, '..', 'public', 'images', 'product');
