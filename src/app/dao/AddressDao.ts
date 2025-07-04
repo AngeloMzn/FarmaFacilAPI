@@ -13,7 +13,7 @@ interface Address {
 }
 
 class AddressDao {
-    
+
     async getAddresses() {
         try {
             return await db.address.findMany();
@@ -80,6 +80,13 @@ class AddressDao {
             }
             throw new Error("Erro ao criar endereço.");
         }
+    }
+
+    async existsAddress(id: number): Promise<boolean> {
+        const address = await db.address.findUnique({
+            where: { id }
+        });
+        return !!address;
     }
 
     async updateAddress(id: number, address: Address) {
