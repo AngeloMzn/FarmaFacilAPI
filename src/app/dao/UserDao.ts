@@ -16,6 +16,7 @@ interface User {
 class UserDao {
 
     async getUsers() {
+        console.log("Fetching all users...");
         return db.user.findMany();
     }
 
