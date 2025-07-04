@@ -36,13 +36,21 @@ class UserDao {
     }
 
 
-    public async getUserByRole(role: string) {
+    async getUserByCpf(cpf: string) {
+        return db.user.findUnique({
+            where: {
+                cpf: cpf
+            }
+        });
+    }
+
+ public async getUserByRole(role: string) {
         return db.user.findMany({
             where: {
                 role: role
             }
         });
-    }
+ }
 
     async createUser(user: User) {
         if (user.image != "") {
