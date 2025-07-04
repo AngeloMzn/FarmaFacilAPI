@@ -32,6 +32,15 @@ class UserDao{
         });
     }
 
+    public async getUserByRole(role: string) {
+        return db.user.findMany({
+            where: {
+                role: role
+            }
+        });
+    }
+
+
     async createUser(user: User){
         return db.user.create({
             data:{
