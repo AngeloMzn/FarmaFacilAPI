@@ -17,13 +17,6 @@ class AddressDao {
         return db.address.findMany();
     }
 
-    async getAddressesByUserId(userId: number) {
-        return db.address.findMany({
-            where: {
-                userId: userId
-            }
-        });
-    }
 
     async getAddressById(id: number) {
         return db.address.findUnique({
@@ -32,6 +25,23 @@ class AddressDao {
             }
         });
     }
+
+    async getAddressesByUserId(userId: number) {
+    return db.address.findMany({
+        where: {
+            userId: userId
+        }
+    });
+}
+
+    async findAddressByCep(cep: string) {
+        return db.address.findMany({
+            where: {
+                cep: cep
+            }
+        });
+    }
+
 
     async createAddress(address: Address) {
         const userId = await address.userId;
