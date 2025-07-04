@@ -1,23 +1,30 @@
-import express from "express";
-import { router } from "./routes";
+import express from 'express';
+import path from 'path';
+import { router } from './routes';
 
-export class App{
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './swagger';
+
+export class App {
   public server: express.Application;
 
-  constructor(){
+  constructor() {
     this.server = express();
     this.middleware();
     this.router();
   }
 
-  private middleware(){
+  private middleware() {
     this.server.use(express.json());
+    this.server.use('/images', express.static(path.join(__dirname, '../public/images')));
+
+    // Swagger docs
+    this.server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   }
 
-  private router(){
+  private router() {
     this.server.use(router);
   }
-  
 }
+
 require('dotenv').config();
-require('dotenv').config({ path: '././.env' });

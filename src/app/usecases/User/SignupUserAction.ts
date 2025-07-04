@@ -25,6 +25,15 @@ interface Data {
 class SignUpUserAction {
 
     public async signUp(data: Data) {
+        // Verificar se email já existe ANTES de criar
+        const existingUser = await userDao.getUserByEmail(data.email);
+        if (existingUser) {
+            return { 
+                success: false, 
+                message: 'Email já cadastrado. Tente fazer login ou use outro email.' 
+            };
+        }
+        
         const hashedPassword = bcrypt.hashSync(data.password, 10);
         const user = {
             email: data.email,
@@ -34,7 +43,8 @@ class SignUpUserAction {
             role: data.role,
             phone: data.phone,
             birthdate: data.birthdate,
-            password: hashedPassword
+            password: hashedPassword,
+            image: ""
         };
         const userId = await userDao.createUser(user);
         const address = {

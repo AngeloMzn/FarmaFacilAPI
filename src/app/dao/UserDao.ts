@@ -1,4 +1,6 @@
 import db from "../../core/db";
+import fs from 'fs';
+import path from 'path';
 
 interface User {
     email: string;
@@ -7,34 +9,58 @@ interface User {
     rg: string;
     role: string;
     phone: string;
-    birthdate: Date;  
+    birthdate: Date;
     password: string;
+    image: string;
 }
-class UserDao{
+class UserDao {
 
-    async getUsers(){
+    async getUsers() {
         return db.user.findMany();
     }
 
-    async getUserById(id:number){
+    async getUserById(id: number) {
         return db.user.findUnique({
-            where:{
-                id:id
+            where: {
+                id: id
             }
         });
     }
 
-    async getUserByEmail(email:string){
+    async getUserByEmail(email: string) {
         return db.user.findUnique({
-            where:{
-                email:email
+            where: {
+                email: email
             }
         });
     }
 
-    async createUser(user: User){
+
+    async getUserByCpf(cpf: string) {
+        return db.user.findUnique({
+            where: {
+                cpf: cpf
+            }
+        });
+    }
+
+ public async getUserByRole(role: string) {
+        return db.user.findMany({
+            where: {
+                role: role
+            }
+        });
+ }
+
+    async createUser(user: User) {
+        if (user.image != "") {
+            const imageDirectory = path.join(__dirname, '..', 'public', 'images', 'product');
+            const imagePath = path.join(imageDirectory, user.image);
+            fs.writeFileSync(imagePath, user.image);
+        }
+
         return db.user.create({
-            data:{
+            data: {
                 email: user.email,
                 name: user.name,
                 cpf: user.cpf,
@@ -42,27 +68,28 @@ class UserDao{
                 role: user.role,
                 phone: user.phone,
                 birthDate: user.birthdate,
-                password: user.password
+                password: user.password,
+                image: user.image
             }
         });
     }
 
-    async updateUser(id:number, user: User){
+    async updateUser(id: number, user: User) {
         return db.user.update({
-            where:{
-                id:id
+            where: {
+                id: id
             },
             data: user
         });
     }
 
-    async deleteUser(id:number){
+    async deleteUser(id: number) {
         return db.user.delete({
-            where:{
-                id:id
+            where: {
+                id: id
             }
         });
     }
 
-} 
+}
 export const userDao = new UserDao();
