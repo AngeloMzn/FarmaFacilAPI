@@ -16,7 +16,11 @@ interface User {
 class UserDao {
 
     async getUsers() {
-        return db.user.findMany();
+        return db.user.findMany({
+            orderBy: {
+                name: 'asc'
+            }
+        });
     }
 
     async getUserById(id: number) {
