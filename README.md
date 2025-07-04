@@ -100,3 +100,8 @@ Para contribuir:
     Push: git push origin minha-feature
 
     Abra um Pull Request
+=======
+# FarmaFacil
+para rodar a aplicação backend basta rodar os comandos  
+npm i  
+npm run dev
