@@ -212,5 +212,11 @@ class ProductDao{
         });
     }
 
+    async countProductsByCategory() {
+        return db.product.groupBy({
+            by: ['category'],
+            _count: { category: true }
+        });
+    }
 } 
 export const productDao = new ProductDao();
