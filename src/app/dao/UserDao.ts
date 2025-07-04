@@ -15,9 +15,11 @@ interface User {
 }
 class UserDao {
 
+
     async getUsers() {;
         console.log(`[${new Date().toISOString()}] - getUsers called`);
         return db.user.findMany();
+
     }
 
     async getUserById(id: number) {
