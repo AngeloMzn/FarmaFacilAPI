@@ -1,4 +1,5 @@
 import db from "../../core/db";
+import { handlePrismaError } from "../utils/PrismaErrorHandler";
 
 interface Address {
     uf: string;
@@ -12,68 +13,86 @@ interface Address {
 }
 
 class AddressDao {
-    
+
     async getAddresses() {
-        return db.address.findMany();
+        try {
+            return await db.address.findMany();
+        } catch (error) {
+            handlePrismaError(error);
+        }
     }
 
     async getAddressesByUserId(userId: number) {
-        return db.address.findMany({
-            where: {
-                userId: userId
-            }
-        });
+        try {
+            return await db.address.findMany({
+                where: { userId }
+            });
+        } catch (error) {
+            handlePrismaError(error);
+        }
     }
 
     async getAddressById(id: number) {
-        return db.address.findUnique({
-            where: {
-                id: id
-            }
-        });
+        try {
+            return await db.address.findUnique({
+                where: { id }
+            });
+        } catch (error) {
+            handlePrismaError(error);
+        }
     }
 
     async createAddress(address: Address) {
-        const userId = await address.userId;
-        return db.address.create({
-            data: {
-                uf: address.uf,
-                cep: address.cep,
-                city: address.city,
-                street: address.street,
-                number: address.number,
-                type: address.type,
-                complement: address.complement,
-                userId: userId
-            }
-        });
+        try {
+            const userId = await address.userId;
+            return await db.address.create({
+                data: {
+                    uf: address.uf,
+                    cep: address.cep,
+                    city: address.city,
+                    street: address.street,
+                    number: address.number,
+                    type: address.type,
+                    complement: address.complement,
+                    userId: userId
+                }
+            });
+        } catch (error) {
+            handlePrismaError(error);
+        }
     }
 
     async updateAddress(id: number, address: Address) {
-        const userId = await address.userId;
-        return db.address.update({
-            where: {
-                id: id
-            },
-            data: {
-                uf: address.uf,
-                cep: address.cep,
-                city: address.city,
-                street: address.street,
-                number: address.number,
-                type: address.type,
-                complement: address.complement,
-                userId: userId
-            }
-        });
+        try {
+            const userId = await address.userId;
+            return await db.address.update({
+                where: { id },
+                data: {
+                    uf: address.uf,
+                    cep: address.cep,
+                    city: address.city,
+                    street: address.street,
+                    number: address.number,
+                    type: address.type,
+                    complement: address.complement,
+                    userId: userId
+                }
+            });
+        } catch (error) {
+            handlePrismaError(error);
+        }
     }
 
     async deleteAddress(id: number) {
-        return db.address.delete({
-            where: {
-                id: id
-            }
-        });
+        try {
+            return await db.address.delete({
+                where: { id }
+            });
+        } catch (error) {
+            handlePrismaError(error);
+        }
     }
+
 }
+
 export const addressDao = new AddressDao();
