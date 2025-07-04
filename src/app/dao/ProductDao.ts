@@ -212,6 +212,15 @@ class ProductDao {
         });
     }
 
+
+    async countProductsByCategory() {
+        return db.product.groupBy({
+            by: ['category'],
+            _count: { category: true }
+        });
+    }
+} 
+
     async updateProductImage(id: number, imageData: string, imageName: string) {
         const imageDirectory = path.join(__dirname, '..', 'public', 'images', 'product');
         const imagePath = path.join(imageDirectory, imageName);
@@ -225,4 +234,5 @@ class ProductDao {
 
 
 }
+
 export const productDao = new ProductDao();
