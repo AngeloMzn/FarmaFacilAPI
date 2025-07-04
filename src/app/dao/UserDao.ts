@@ -35,6 +35,7 @@ class UserDao {
         });
     }
 
+
     async getUserByCpf(cpf: string) {
         return db.user.findUnique({
             where: {
@@ -43,12 +44,21 @@ class UserDao {
         });
     }
 
+ public async getUserByRole(role: string) {
+        return db.user.findMany({
+            where: {
+                role: role
+            }
+        });
+ }
+
     async createUser(user: User) {
         if (user.image != "") {
             const imageDirectory = path.join(__dirname, '..', 'public', 'images', 'product');
             const imagePath = path.join(imageDirectory, user.image);
             fs.writeFileSync(imagePath, user.image);
         }
+
         return db.user.create({
             data: {
                 email: user.email,
