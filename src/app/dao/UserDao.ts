@@ -15,12 +15,11 @@ interface User {
 }
 class UserDao {
 
-    async getUsers() {
-        return db.user.findMany({
-            orderBy: {
-                name: 'asc'
-            }
-        });
+
+    async getUsers() {;
+        console.log(`[${new Date().toISOString()}] - getUsers called`);
+        return db.user.findMany();
+
     }
 
     async getUserById(id: number) {
