@@ -33,5 +33,7 @@ if (process.env.DEV_MODE == "true") {
     router.get("/products/seed", productController.generateSeed);
     router.delete("/products", productController.deleteAllProducts);
 }
-
+router.get("/health", (req, res) => {
+  res.json({ status: "ok" });
+});
 export { router };
