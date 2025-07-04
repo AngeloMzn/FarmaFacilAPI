@@ -12,14 +12,16 @@ class ProductController{
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });
     }
   }
+
   public async getProducts(req: Request, res: Response): Promise<Response> {
     try {
       const response = await listProductAction.getProducts();
-      return res.json(response);
+      return res.status(200).json(response);
     } catch (error) {
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });
     }
   }
+
   public async getProductById(req: Request, res: Response): Promise<Response> {
     try {
       const response = await listProductAction.getProductById(Number(req.params.id));
@@ -28,6 +30,7 @@ class ProductController{
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });
     }
   }
+
   public async updateProduct(req: Request, res: Response): Promise<Response> {
     try {
       const response = await crudProductAction.updateProduct(Number(req.params.id), req.body);
@@ -36,9 +39,52 @@ class ProductController{
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });
     }
   }
+
   public async deleteProduct(req: Request, res: Response): Promise<Response> {
     try {
       const response = await crudProductAction.deleteProduct(Number(req.params.id));
+      return res.json(response);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+    }
+  }
+  
+  public async getProductByCode(req: Request, res: Response): Promise<Response> {
+    try {
+      const response = await listProductAction.getProductByCode(req.params.code);
+      return res.json(response);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+    }
+  }
+
+  public async getProductsByCategory(req: Request, res: Response): Promise<Response> {
+    try {
+      const response = await listProductAction.getProductsByCategory(req.params.category);
+      return res.json(response);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+    }
+  }
+  public async generateSeed(req: Request, res: Response): Promise<Response> {
+    try {
+      const response = await crudProductAction.generateSeed();
+      return res.json(response);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+    }
+  }
+  public async deleteAllProducts(req: Request, res: Response): Promise<Response> {
+    try {
+      const response = await crudProductAction.deleteAllProducts();
+      return res.json(response);
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal Server Error', error: error as any });
+    }
+  }
+  public async getLastTwo(req: Request, res: Response): Promise<Response> {
+    try {
+      const response = await listProductAction.getLastTwo();
       return res.json(response);
     } catch (error) {
       return res.status(500).json({ message: 'Internal Server Error', error: error as any });

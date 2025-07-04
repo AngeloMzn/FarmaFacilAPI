@@ -12,8 +12,17 @@ interface Address {
 }
 
 class AddressDao {
+    
     async getAddresses() {
         return db.address.findMany();
+    }
+
+    async getAddressesByUserId(userId: number) {
+        return db.address.findMany({
+            where: {
+                userId: userId
+            }
+        });
     }
 
     async getAddressById(id: number) {
