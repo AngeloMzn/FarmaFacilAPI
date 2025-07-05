@@ -87,6 +87,8 @@ ___
 
     Geração e remoção de seeds (modo dev)
     
+    Atualização de estoque de produtos 
+    
 ___
 👥 Contribuição
 
