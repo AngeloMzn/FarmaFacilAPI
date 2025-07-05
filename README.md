@@ -1,6 +1,6 @@
 # 💊 FarmaFacilAPI
 
-API RESTful desenvolvida para gerenciamento de usuários, produtos e endereços. Esta API faz parte do sistema FarmaFácil e foi construída com foco em escalabilidade, organização e integração com sistemas externos.
+API RESTful desenvolvida para o gerenciamento flexível e modular de usuários, produtos e endereços. Esta API integra o sistema FarmaFácil, priorizando escalabilidade, organização e fácil integração com sistemas externos.
 
 ---
 
