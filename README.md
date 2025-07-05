@@ -99,6 +99,7 @@ Para contribuir:
     Faça um fork deste repositório
 
     Crie uma branch: git checkout -b minha-feature
+    Use mensagens de commit claras e no imperativo (ex: "Adiciona X", "Corrige Y").  
 
     Faça suas alterações e commit: git commit -m '[FEAT] Minha nova feature'
 
