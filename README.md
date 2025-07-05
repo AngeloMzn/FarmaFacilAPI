@@ -86,6 +86,8 @@ ___
     CRUD de endereços
 
     Geração e remoção de seeds (modo dev)
+
+    Busca de usuários por email
     
 ___
 👥 Contribuição
