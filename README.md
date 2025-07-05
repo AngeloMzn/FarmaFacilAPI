@@ -1,6 +1,6 @@
 # 💊 FarmaFacilAPI
 
-API RESTful desenvolvida para gerenciamento de usuários, produtos e endereços. Esta API faz parte do sistema FarmaFácil e foi construída com foco em escalabilidade, organização e integração com sistemas externos.
+API RESTful que **automatiza a gestão** de usuários, produtos e endereços, otimizando operações do sistema FarmaFácil.
 
 ---
 
@@ -19,6 +19,7 @@ Após rodar o projeto localmente, a documentação estará disponível em:
 - Prisma (ORM)
 - PostgreSQL (banco de dados)
 - Swagger (documentação da API)
+- Dotenv
 
 ---
 
@@ -85,6 +86,10 @@ ___
     CRUD de endereços
 
     Geração e remoção de seeds (modo dev)
+
+    Busca de usuários por email
+    
+    Atualização de estoque de produtos 
     
 ___
 👥 Contribuição
@@ -94,8 +99,11 @@ Para contribuir:
     Faça um fork deste repositório
 
     Crie uma branch: git checkout -b minha-feature
+    Use mensagens de commit claras e no imperativo (ex: "Adiciona X", "Corrige Y").  
 
     Faça suas alterações e commit: git commit -m '[FEAT] Minha nova feature'
+
+    Inclua testes unitários para suas alterações.  <--- SUA ALTERAÇÃO AQUI
 
     Push: git push origin minha-feature
 

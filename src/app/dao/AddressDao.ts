@@ -1,4 +1,5 @@
 import db from "../../core/db";
+import { Prisma } from "@prisma/client";
 
 interface Address {
     uf: string;
@@ -14,76 +15,113 @@ interface Address {
 class AddressDao {
     
     async getAddresses() {
-        return db.address.findMany();
+        try {
+            return await db.address.findMany();
+        } catch (error) {
+            throw new Error("Erro ao buscar endereços.");
+        }
     }
 
-
     async getAddressById(id: number) {
-        return db.address.findUnique({
-            where: {
-                id: id
+        try {
+            const address = await db.address.findUnique({
+                where: { id: id }
+            });
+            if (!address) {
+                throw new Error("Endereço não encontrado.");
             }
-        });
+            return address;
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
+                throw new Error("Endereço não encontrado.");
+            }
+            throw new Error("Erro ao buscar endereço por ID.");
+        }
     }
 
     async getAddressesByUserId(userId: number) {
-    return db.address.findMany({
-        where: {
-            userId: userId
+        try {
+            return await db.address.findMany({
+                where: { userId: userId }
+            });
+        } catch (error) {
+            throw new Error("Erro ao buscar endereços do usuário.");
         }
-    });
-}
-
-    async findAddressByCep(cep: string) {
-        return db.address.findMany({
-            where: {
-                cep: cep
-            }
-        });
     }
 
+    async findAddressByCep(cep: string) {
+        try {
+            return await db.address.findMany({
+                where: { cep: cep }
+            });
+        } catch (error) {
+            throw new Error("Erro ao buscar endereço pelo CEP.");
+        }
+    }
 
     async createAddress(address: Address) {
-        const userId = await address.userId;
-        return db.address.create({
-            data: {
-                uf: address.uf,
-                cep: address.cep,
-                city: address.city,
-                street: address.street,
-                number: address.number,
-                type: address.type,
-                complement: address.complement,
-                userId: userId
+        try {
+            const userId = await address.userId;
+            return await db.address.create({
+                data: {
+                    uf: address.uf,
+                    cep: address.cep,
+                    city: address.city,
+                    street: address.street,
+                    number: address.number,
+                    type: address.type,
+                    complement: address.complement,
+                    userId: userId
+                }
+            });
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+                throw new Error("Já existe um endereço com esse valor único.");
             }
-        });
+            throw new Error("Erro ao criar endereço.");
+        }
     }
 
     async updateAddress(id: number, address: Address) {
-        const userId = await address.userId;
-        return db.address.update({
-            where: {
-                id: id
-            },
-            data: {
-                uf: address.uf,
-                cep: address.cep,
-                city: address.city,
-                street: address.street,
-                number: address.number,
-                type: address.type,
-                complement: address.complement,
-                userId: userId
+        try {
+            const userId = await address.userId;
+            return await db.address.update({
+                where: { id: id },
+                data: {
+                    uf: address.uf,
+                    cep: address.cep,
+                    city: address.city,
+                    street: address.street,
+                    number: address.number,
+                    type: address.type,
+                    complement: address.complement,
+                    userId: userId
+                }
+            });
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError) {
+                if (error.code === "P2025") {
+                    throw new Error("Endereço não encontrado para atualização.");
+                }
+                if (error.code === "P2002") {
+                    throw new Error("Violação de unicidade ao atualizar endereço.");
+                }
             }
-        });
+            throw new Error("Erro ao atualizar endereço.");
+        }
     }
 
     async deleteAddress(id: number) {
-        return db.address.delete({
-            where: {
-                id: id
+        try {
+            return await db.address.delete({
+                where: { id: id }
+            });
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
+                throw new Error("Endereço não encontrado para exclusão.");
             }
-        });
+            throw new Error("Erro ao deletar endereço.");
+        }
     }
 }
 export const addressDao = new AddressDao();
