@@ -89,6 +89,8 @@ ___
 
     Busca de usuários por email
     
+    Atualização de estoque de produtos 
+    
 ___
 👥 Contribuição
 
