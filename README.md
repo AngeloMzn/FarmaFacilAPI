@@ -102,6 +102,8 @@ Para contribuir:
 
     Faça suas alterações e commit: git commit -m '[FEAT] Minha nova feature'
 
+    Inclua testes unitários para suas alterações.  <--- SUA ALTERAÇÃO AQUI
+
     Push: git push origin minha-feature
 
     Abra um Pull Request
