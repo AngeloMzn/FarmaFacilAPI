@@ -19,7 +19,7 @@ Após rodar o projeto localmente, a documentação estará disponível em:
 - Prisma (ORM)
 - PostgreSQL (banco de dados)
 - Swagger (documentação da API)
-
+- JWT (JSON Web Tokens) 
 ---
 
 ## 🛠️ Como rodar o projeto localmente
